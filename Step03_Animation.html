@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step03_Animation.html</title>
+    <style>
+        #kim{
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            border-radius: 50px;
+        }
+        /* id가 kim인 요소에 마우스가 hover되었을때 rotateAni라는 이름의 keyframe 적용시키기 */
+        #kim:hover{
+            /* 키프레임 종류, 수행시간, 반복횟수, 타이밍 함수, 왕복여부 */
+            animation: rotateAni 3s 2 ease-out alternate;
+        }
+
+        /* animation keyframe 정의하기 */
+        @keyframes rotateAni{
+            from{
+                background-color: #ffffff;
+                transform: rotate(0deg);
+            }
+            to{
+                background-color: #ff00ff;
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes rotateAni2{
+            0%{
+                background-color: #ffffff;
+                transform: rotate(0deg);
+            }
+            100%{
+                background-color: #ff00ff;
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>animation 테스트</h3>
+        <img src="images/DSC_0053.jpg" id="kim">
+    </div>
+</body>
+</html>

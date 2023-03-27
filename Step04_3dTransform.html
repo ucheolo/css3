@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step04_3dTransform.html</title>
+    <style>
+        .wrapper{
+            /* viewer와 object 사이의 거리 */
+            perspective: 500px;
+            /* viewer의 위치 */
+            perspective-origin: 50% 50%;
+            border: 1px solid blue;
+            height: 400px;
+            padding-top: 100px;
+        }
+        .target{
+            margin: 0 auto;
+            width: 200px;
+            border: 1px solid red;
+            transform-style: preserve-3d;
+            /* x, y, z 축이 교차하는 원점 설정 */
+            transform-origin: 50% 50%;
+            transition: transform 0.4s ease-out;
+        }
+        .target img{
+            max-width: 100%;
+        }
+        #one:hover{
+            transform: rotateX(45deg);
+        }
+        #two:hover{
+            transform: rotateY(45deg);
+        }
+        #three:hover{
+            transform: rotateZ(45deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>3d transform 테스트</h3>
+        <!-- 3d 공간을 만들 wrapper div -->
+        <div class="wrapper">
+            <!-- 3d transform을 할 아이템 -->
+            <div class="target" id="one">
+                <!-- 3d 공간 안에서 3d transform을 적용시킬 아이템-->
+                <img src="images/DSC_0053.jpg">
+            </div>
+        </div>
+        <div class="wrapper">
+            <!-- 3d transform을 할 아이템 -->
+            <div class="target" id="two">
+                <!-- 3d 공간 안에서 3d transform을 적용시킬 아이템-->
+                <img src="images/DSC_0053.jpg">
+            </div>
+        </div>
+        <div class="wrapper">
+            <!-- 3d transform을 할 아이템 -->
+            <div class="target" id="three">
+                <!-- 3d 공간 안에서 3d transform을 적용시킬 아이템-->
+                <img src="images/DSC_0053.jpg">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

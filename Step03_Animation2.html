@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step03_Animation2.html</title>
+    <style>
+        
+        img{
+            width: 100px;
+            height: 100px;
+        }
+
+        .move{
+            animation: moveAni 3s 1 ease-out;
+        }
+
+        @keyframes moveAni{
+            0%{
+                transform: translateX(0px) rotate(0deg);
+            }
+            100%{
+                transform: translateX(500px) rotate(180deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>animation 테스트</h3>
+        <button class="startBtn">시작</button>
+        <img src="images/DSC_0053.jpg" id="kim">
+    </div>
+    <!-- jquery 로딩 -->
+    <script src="https://code.jquery.com/jquery-3.6.4.js"
+        integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+            crossorigin="anonymous">
+    </script>
+    <script>
+        // // 시작 버튼을 누르면 이미지에 moveAni라는 키프레임이 적용
+        // document.querySelector("#startBtn").addEventListener("click", ()=>{
+        //     document.querySelector("#kim").classList.add("move");
+        // });
+
+        // // animation 적용이 끝나면 "animationend"라는 이름의 이벤트 발생
+        // document.querySelector("#kim").addEventListener("animationend", ()=>{
+        //     //move 클래스 제거
+        //     document.querySelector("#kim").classList.remove("move");
+        // });
+
+        //위의 동작을 jquery를 이용
+        $("#startBtn").on("click", ()=>{
+            $("kim").addClass("move");
+        });
+        $("#startBtn").on("animationend", ()=>{
+            $("kim").removeClass("move");
+        });
+    </script>
+</body>
+</html>

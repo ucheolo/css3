@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step06_example.html</title>
+    <style>
+        .wrapper{
+            perspective: 500px;
+            perspective-origin: 50% 0%;
+            height: 600px;
+            border: 1px solid blue;
+            padding-top: 100px;
+            box-sizing: border-box; /* padding 과 border 를 width, height 에 포함되도록 */
+        }
+        .cube{
+            width: 400px;
+            height: 400px;
+            margin: 0 auto;
+            transform-style: preserve-3d;
+            transform-origin: 50% 50%;
+            transform: translateZ(-200px);
+        }
+        .cube > div{
+            border: 1px solid red;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 400px;
+            height: 400px;
+            background-color: antiquewhite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 100px;
+            font-weight: bold;
+            opacity: 0.5;
+        }
+
+        .cube > div:nth-child(1){
+            transform: translateZ(200px);
+        }
+        .cube > div:nth-child(2){
+            transform: rotateY(90deg) translateZ(200px);
+        }
+        .cube > div:nth-child(3){
+            transform: rotateY(180deg) translateZ(200px);
+        }
+        .cube > div:nth-child(4){
+            transform: rotateY(270deg) translateZ(200px);
+        }
+
+        .cube{
+            transition: transform 0.4s ease-out;
+        }
+        nav{
+            text-align: center;
+        }
+        nav button{
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>3d cube 테스트</h3>
+        <div class="wrapper">
+            <div class="cube">
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+                <div>4</div>   
+            </div>
+        </div>
+        <nav>
+            <button id="prevBtn">&laquo;</button>
+            <button id="nextBtn">&raquo;</button>
+        </nav>
+    </div>
+    <!-- jquery 로딩 -->
+    <script src="https://code.jquery.com/jquery-3.6.4.js"
+     integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+         crossorigin="anonymous"></script>
+    <script>
+        let rY=0;
+
+        //위의 버튼을 눌렀을때 .cube 를 90 도씩 y 축 기준으로 회전하도록 해 보세요.
+        $("#prevBtn").click(()=>{
+            rY -= 90;
+            $(".cube").css("transform", "translateZ(-200px) rotateY("+rY+"deg)");
+        });
+        $("#nextBtn").click(()=>{
+            rY += 90;
+            $(".cube").css("transform", "translateZ(-200px) rotateY("+rY+"deg)");
+        });
+
+        //n 각형의 폭을 함수에 전달하면 div 를 배치할때 rotateY 값과 translateZ 가 Object 로 리턴되는 함수 
+        function getAngleNtz(n, width) {
+            var angle = Math.round(360 / n);
+            var tz = Math.round((width / 2) / Math.tan((angle * Math.PI) / (2 * 180)));
+            var obj = {
+            angle: angle,
+            tz: tz
+            };
+            return obj;
+        }
+    </script>    
+</body>
+</html>

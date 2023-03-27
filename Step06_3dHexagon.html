@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step06_3dHexagon.html</title>
+    <style>
+        .wrapper{
+            perspective: 500px;
+            perspective-origin: 50% 50%;
+        }
+        .hexa{
+            width: 400px;
+            height: 400px;
+            margin: 0 auto;
+            transform-style: preserve-3d;
+            transform-origin: 50% 50%;
+            transform: translateZ(-346px);
+        }
+        .hexa > div{
+            border: 1px solid red;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 400px;
+            height: 400px;
+            background-color: antiquewhite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 100px;
+            font-weight: bold;
+            opacity: 0.5;
+        }
+
+        .hexa > div:nth-child(1){
+            transform: translateZ(346px);
+        }
+        .hexa > div:nth-child(2){
+            transform: rotateY(60deg) translateZ(346px);
+        }
+        .hexa > div:nth-child(3){
+            transform: rotateY(120deg) translateZ(346px);
+        }
+        .hexa > div:nth-child(4){
+            transform: rotateY(180deg) translateZ(346px);
+        }
+        .hexa > div:nth-child(5){
+            transform: rotateY(240deg) translateZ(346px);
+        }
+        .hexa > div:nth-child(6){
+            transform: rotateY(300deg) translateZ(346px);
+        }
+
+        @keyframes rotateAni{
+            0%{
+                transform: translateZ(-346px) rotateX(0deg) rotateY(0deg);
+            }
+            100%{
+                transform: translateZ(-346px) rotateX(360deg) rotateY(360deg);
+            }
+        }
+
+        .hexa:hover{
+            animation: rotateAni 5s infinite linear alternate;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>3d hexagon 테스트</h3>
+        <div class="wrapper">
+            <div class="hexa">
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+                <div>4</div>
+                <div>5</div>
+                <div>6</div>    
+            </div>
+        </div>
+    </div>
+    <script>
+        //n 각형의 폭을 함수에 전달하면 div 를 배치할때 rotateY 값과 translateZ 가 Object 로 리턴되는 함수 
+        function getAngleNtz(n, width) {
+            var angle = Math.round(360 / n);
+            var tz = Math.round((width / 2) / Math.tan((angle * Math.PI) / (2 * 180)));
+            var obj = {
+                angle: angle,
+                tz: tz
+            };
+            return obj;
+        }
+    </script>
+</body>
+</html>

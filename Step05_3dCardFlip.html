@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step05_3dCardFlip.html</title>
+    <style>
+        .wrapper{
+            perspective: 500%;
+            perspective-origin: 50% 50%;
+            width: 200px;
+            height: 200px;
+        }
+        .target{
+            transform-style: preserve-3d;
+            transform-origin: 50% 50%;
+            transition: transform 0.4s ease-out;
+        }
+        
+        .target > div{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            backface-visibility: hidden;
+            /* 글자를 div의 가운데 오도록 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .front{
+            background-color: red;
+        }
+        .back{
+            background-color: blue;
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>카드 Flip 예제</h3>
+        <div class="wrapper">
+            <div class="target" id="myCard">
+                <div class="front">front</div>
+                <div class="back">back</div>
+            </div> 
+        </div>
+        <button id="flipBtn">뒤집기</button>
+    </div>
+    <!-- jquery 로딩 -->
+    <script src="https://code.jquery.com/jquery-3.6.4.js"
+     integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+         crossorigin="anonymous"></script>
+    <script>
+        // y축 회전값을 관리할 변수 만들고 초기값 0 대입
+        let rY=0;
+        $("#flipBtn").on("click", ()=>{
+            // rY값 180 증가 시키기
+            rY += 180;
+            $("#myCard").css("transform", "rotateY("+rY+"deg)");
+        });
+    </script>
+</body>
+</html>
